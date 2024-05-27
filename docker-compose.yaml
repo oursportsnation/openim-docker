@@ -15,7 +15,7 @@ services:
       - "${DATA_DIR}/components/mongodb/data/conf:/etc/mongo"
       - "./scripts/mongo-init.sh:/docker-entrypoint-initdb.d/mongo-init.sh:ro"
     environment:
-      - TZ=Asia/Shanghai
+      - TZ=Asia/Seoul
       - wiredTigerCacheSizeGB=1
       - MONGO_INITDB_ROOT_USERNAME=root
       - MONGO_INITDB_ROOT_PASSWORD=openIM123
@@ -33,7 +33,7 @@ services:
       - "${DATA_DIR}/components/redis/data:/data"
       - "${DATA_DIR}/components/redis/config/redis.conf:/usr/local/redis/config/redis.conf"
     environment:
-      TZ: Asia/Shanghai
+      TZ: Asia/Seoul
     restart: always
     sysctls:
       net.core.somaxconn: 1024
@@ -45,7 +45,7 @@ services:
     image: "${ZOOKEEPER_IMAGE}"
     container_name: zookeeper
     environment:
-      TZ: "Asia/Shanghai"
+      TZ: "Asia/Seoul"
       ALLOW_ANONYMOUS_LOGIN: "yes"
     restart: always
     networks:
@@ -62,7 +62,7 @@ services:
     command: >
       bash -c "/opt/bitnami/scripts/kafka/run.sh & /opt/bitnami/kafka/create-topic.sh; wait"
     environment:
-      TZ: Asia/Shanghai
+      TZ: Asia/Seoul
       KAFKA_CFG_NODE_ID: 0
       KAFKA_CFG_PROCESS_ROLES: controller,broker
       KAFKA_CFG_CONTROLLER_QUORUM_VOTERS: 0@kafka:9093
@@ -83,7 +83,7 @@ services:
       - "${DATA_DIR}/components/mnt/data:/data"
       - "${DATA_DIR}/components/mnt/config:/root/.minio"
     environment:
-      TZ: Asia/Shanghai
+      TZ: Asia/Seoul
       MINIO_ROOT_USER: "${MINIO_ACCESS_KEY_ID}"
       MINIO_ROOT_PASSWORD: "${MINIO_SECRET_ACCESS_KEY}"
     restart: always
